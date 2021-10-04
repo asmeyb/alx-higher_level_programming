@@ -24,7 +24,7 @@ void print_python_string(PyObject *p)
 	val = PyUnicode_AsWideCharString(p, &len);
 	if (PyUnicode_IS_COMPACT_ASCII(p) != 0)
         data = "compact ascii";
-    else
+        else
         data = "compact unicode object";
 	printf("  type: %s\n  length: %lu\n  value: %ls\n", data, len, val);
 }
