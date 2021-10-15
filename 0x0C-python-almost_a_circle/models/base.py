@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+"""
+module for Base class
+"""
+
+import json
+import os
+import csv
+
+
+class Base:
+    """A base"""
+
+    __nb_objects = 0
+
+    def __init__(self, id=None):
+        """Intialize a base."""
+        if id is not None:
+            self.id = id
+        else:
+            Base.__nb_objects += 1
+            self.id = Base.__nb_objects
