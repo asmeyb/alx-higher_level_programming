@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 module for Rectangle class.
 """
@@ -73,3 +72,47 @@ class Rectangle(Base):
         if y < 0:
             raise ValueError("y must be >= 0")
         self.__y = y
+        
+    def area(self):
+        """the area"""
+        return self.__width * self.__height
+
+    def display(self):
+        """Print"""
+        y = self.__y
+        height = self.__height
+        x = self.__x
+        width = self.__width
+        for i in range(y):
+            print()
+        for i in range(height):
+            print(" " * x, end="")
+            print("#" * width)
+
+    def __str__(self):
+        """string representation"""
+        y = str(self.__y)
+        h = str(self.__height)
+        x = str(self.__x)
+        w = str(self.__width)
+        i = str(self.id)
+        string = "[Rectangle] (" + i + ") " + x + "/" + y + " - " + w + "/" + h
+        return string
+
+    def update(self, *args, **kwargs):
+        """update"""
+        if args:
+            a = ["id", "width", "height", "x", "y"]
+            for i, e in enumerate(args):
+                setattr(self, a[i], e)
+            return
+        for x, y in kwargs.items():
+            if hasattr(self, x):
+                setattr(self, x, y)
+
+    def to_dictionary(self):
+        """Dictionary"""
+        Dictionary = {}
+        for x, y in vars(self).items():
+            Dictionary[x.split("__")[-1]] = y
+        return Dictionary
