@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 module for Rectangle class.
 """
@@ -72,7 +73,7 @@ class Rectangle(Base):
         if y < 0:
             raise ValueError("y must be >= 0")
         self.__y = y
-        
+
     def area(self):
         """the area"""
         return self.__width * self.__height
