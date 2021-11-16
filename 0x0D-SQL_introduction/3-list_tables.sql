@@ -1,2 +1,2 @@
 -- show tables is DB
-show tables;
+SHOW TABLES;
