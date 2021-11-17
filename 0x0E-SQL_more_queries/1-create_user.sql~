@@ -1,2 +1,0 @@
--- creates the the MySQL Server
-create user if not exists 'user_0d_1'@'localhost' indentified by 'user_0d_pwd';
