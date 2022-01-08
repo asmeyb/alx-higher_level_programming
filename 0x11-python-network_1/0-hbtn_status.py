@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''task 0 script'''
+'''Intranet script'''
 
 
 if __name__ == '__main__':
