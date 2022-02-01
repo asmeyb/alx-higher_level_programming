@@ -1,24 +1,26 @@
 #!/usr/bin/node
-
+/* script that prints all characters of a Star Wars movie */
 const request = require('request');
+/* first argument is the Movie ID - example: 3 = "Return of the Jedi" */
+const url = 'https://swapi-api.hbtn.io/api/films/' + process.argv[2];
 
-request(`http://swapi-api.hbtn.io/api/films/${process.argv[2]}`, (err, res, body) => {
-    if (err) {
-    console.log(err);
-  } else {
-    const characters = JSON.parse(body).characters;
-    order(characters, 0);
-  }
-});
-
-function order (characters, i) {
-  if (i === characters.length) { return; }
-  request(characters[i], (err, res, body) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(JSON.parse(body).name);
-      order(characters, i + 1);
-    }
+const start = function () {
+  request(url, function (error, response, body) {
+    if (error) throw error;
+    end(JSON.parse(body).characters, 0);
   });
-}
+};
+
+const end = function (characters, i) {
+  if (characters.length === i) {
+    return;
+  }
+  /* Display one character name by line in the same order of the list "characters" in the /films/ response */
+  request(characters[i], function (error, response, body) {
+    if (error) throw error;
+    console.log(JSON.parse(body).name);
+    end(characters, ++i);
+  });
+};
+
+start();
