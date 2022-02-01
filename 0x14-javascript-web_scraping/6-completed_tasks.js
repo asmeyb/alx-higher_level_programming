@@ -1,24 +1,24 @@
 #!/usr/bin/node
 
 const request = require('request');
+const url = process.argv[2];
+const dict = {};
 
-request(process.argv[2], (err, res, body) => {
-    if(err){
-	console.log(err);
+request(url, function (error, response, body) {
+  if (error) {
+    console.log(error);
+  } else {
+    const result = JSON.parse(body);
+    for (const user of result) {
+      if (user.completed === true) {
+        const objId = user.userId;
+        if (!dict[objId]) {
+          dict[objId] = 1;
+        } else {
+          dict[objId] += 1;
+        }
+      }
     }
-    else{
-	const list = JSON.parse(body);
-	console.log(list.reduce((ret,el) => {
-	    if(el.completed){
-		if(ret[el.userId]){
-		    ret[el.userId]++;
-		}
-		else{
-		    ret[el.userId] = 1;
-		}
-	    }
-
-	    return ret;
-	}, {}))
-    }
+    console.log(dict);
+  }
 });
