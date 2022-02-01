@@ -2,7 +2,7 @@
 
 const request = require('request');
 
-request(`https://swap-api.io/api/films/${process.argv[v]}`,(err, response, body) =>{
+request(`https://swapi-api.hbtn.io/api/films/${process.argv[2]}`,(err, response, body) =>{
     if(err){
 	console.log(err);
     }
